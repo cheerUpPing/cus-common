@@ -1,8 +1,8 @@
 package gin
 
 import (
-	"cus_common"
-	"cus_common/log"
+	cus_common "github.com/cheerUpPing/cus-common"
+	"github.com/cheerUpPing/cus-common/log"
 	"github.com/gin-gonic/gin"
 	"github.com/go-basic/uuid"
 	"net/http"

@@ -1,4 +1,4 @@
-module cus_common
+module github.com/cheerUpPing/cus-common
 
 go 1.17
 

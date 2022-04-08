@@ -1,8 +1,8 @@
 package log
 
 import (
-	"cus_common"
 	"fmt"
+	cus_common "github.com/cheerUpPing/cus-common"
 	rotatelogs "github.com/lestrrat/go-file-rotatelogs"
 	"github.com/pkg/errors"
 	"github.com/rs/zerolog"
