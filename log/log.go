@@ -43,17 +43,14 @@ func fileLogger() {
 		log.consoleLogger.Error().Msg("LOG_PATH env not config")
 		os.Exit(1)
 	}
-	fileInfo, err := os.Stat(val)
+	_, err := os.Stat(val)
 	if err != nil {
 		err = os.MkdirAll(val, os.ModePerm)
 		if err != nil {
 			log.consoleLogger.Error().Msg("create log dir fail, err: " + fmt.Sprint(err))
 			os.Exit(1)
-		} else {
-			fileInfo, _ = os.Stat(val)
 		}
 	}
-	fmt.Println(fileInfo.Name())
 	logDir, err := filepath.Abs(val)
 	if err != nil {
 		log.consoleLogger.Error().Msg("get log dir path fail, err: " + fmt.Sprint(err))
