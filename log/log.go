@@ -84,17 +84,17 @@ func consoleLogger() {
 			return time.Now().Format(cus_common.TIME_FORMAT)
 		},
 		FormatLevel: func(i interface{}) string {
-			return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
+			return strings.ToUpper(fmt.Sprintf("| %-6s", i))
 		},
 		FormatCaller: nil,
 		FormatMessage: func(i interface{}) string {
 			return fmt.Sprintf("| %s ", i)
 		},
 		FormatFieldName: func(i interface{}) string {
-			return fmt.Sprintf("| %s: |", i)
+			return fmt.Sprintf("| %s: ", i)
 		},
 		FormatFieldValue: func(i interface{}) string {
-			return strings.ToUpper(fmt.Sprintf("| %s |", i))
+			return strings.ToUpper(fmt.Sprintf("| %s ", i))
 		},
 		FormatErrFieldName:  nil,
 		FormatErrFieldValue: nil,
