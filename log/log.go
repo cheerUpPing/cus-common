@@ -28,13 +28,13 @@ func init() {
 }
 
 func LogInfo(traceId, msg string) {
-	log.consoleLogger.Info().CallerSkipFrame(1).Str(cus_common.TRACE_ID, traceId).Msg(msg)
-	log.fileLogger.Info().CallerSkipFrame(1).Str(cus_common.TRACE_ID, traceId).Msg(msg)
+	log.consoleLogger.Info().CallerSkipFrame(1).Msg(fmt.Sprintf("%s | %s", traceId, msg))
+	log.fileLogger.Info().CallerSkipFrame(1).Msg(fmt.Sprintf("%s | %s", traceId, msg))
 }
 
 func LogError(traceId string, err error) {
-	log.consoleLogger.Error().Stack().Err(errors.WithStack(err)).Str(cus_common.TRACE_ID, traceId).Send()
-	log.fileLogger.Error().Stack().Err(errors.WithStack(err)).Str(cus_common.TRACE_ID, traceId).Send()
+	log.consoleLogger.Error().Stack().Err(errors.WithStack(err)).Msg(fmt.Sprintf("%s | %s", traceId, err))
+	log.fileLogger.Error().Stack().Err(errors.WithStack(err)).Msg(fmt.Sprintf("%s | %s", traceId, err))
 }
 
 func fileLogger() {
