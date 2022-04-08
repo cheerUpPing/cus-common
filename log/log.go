@@ -33,8 +33,8 @@ func LogInfo(traceId, msg string) {
 }
 
 func LogError(traceId string, err error) {
-	log.consoleLogger.Error().Stack().Err(errors.WithStack(err)).Send()
-	log.fileLogger.Error().Stack().Err(errors.WithStack(err)).Send()
+	log.consoleLogger.Error().Stack().Err(errors.WithStack(err)).Str(cus_common.TRACE_ID, traceId).Send()
+	log.fileLogger.Error().Stack().Err(errors.WithStack(err)).Str(cus_common.TRACE_ID, traceId).Send()
 }
 
 func fileLogger() {
