@@ -68,11 +68,11 @@ func fileLogger() {
 		log.consoleLogger.Error().Msg("create symlink fail, err: " + fmt.Sprint(err))
 		os.Exit(1)
 	}
-	fileLogger := zerolog.New(logFile).With().Timestamp().Logger()
+	fileLogger := zerolog.New(logFile).With().Timestamp().Caller().CallerWithSkipFrameCount(1).Logger()
 	log.fileLogger = fileLogger
 }
 
 func consoleLogger() {
-	consoleLogger := zerolog.New(os.Stdout).With().Timestamp().Logger()
+	consoleLogger := zerolog.New(os.Stdout).With().Timestamp().Caller().CallerWithSkipFrameCount(1).Logger()
 	log.consoleLogger = consoleLogger
 }
