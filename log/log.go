@@ -73,6 +73,6 @@ func fileLogger() {
 }
 
 func consoleLogger() {
-	consoleLogger := zerolog.New(zerolog.ConsoleWriter{Out: os.Stdout}).With().Timestamp().Logger()
+	consoleLogger := zerolog.New(os.Stdout).With().Timestamp().Logger()
 	log.consoleLogger = consoleLogger
 }
