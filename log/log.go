@@ -23,7 +23,7 @@ func init() {
 	zerolog.TimestampFieldName = "t"
 	zerolog.LevelFieldName = "l"
 	zerolog.MessageFieldName = "m"
-	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
+	zerolog.TimeFieldFormat = cus_common.TIME_FORMAT
 	zerolog.ErrorStackMarshaler = pkgerrors.MarshalStack
 	consoleLogger()
 	fileLogger()
