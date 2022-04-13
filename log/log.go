@@ -9,7 +9,6 @@ import (
 	"github.com/rs/zerolog/pkgerrors"
 	"os"
 	"path/filepath"
-	"strings"
 	"time"
 )
 
@@ -21,6 +20,9 @@ type logger struct {
 var log = logger{}
 
 func init() {
+	zerolog.TimestampFieldName = "t"
+	zerolog.LevelFieldName = "l"
+	zerolog.MessageFieldName = "m"
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
 	zerolog.ErrorStackMarshaler = pkgerrors.MarshalStack
 	consoleLogger()
@@ -66,36 +68,11 @@ func fileLogger() {
 		log.consoleLogger.Error().Msg("create symlink fail, err: " + fmt.Sprint(err))
 		os.Exit(1)
 	}
-	fileLogger := zerolog.New(logFile).With().Timestamp().Stack().CallerWithSkipFrameCount(2).Logger()
+	fileLogger := zerolog.New(logFile).With().Timestamp().Logger()
 	log.fileLogger = fileLogger
 }
 
 func consoleLogger() {
-	console := zerolog.ConsoleWriter{
-		Out:          os.Stdout,
-		NoColor:      false,
-		TimeFormat:   "",
-		PartsOrder:   nil,
-		PartsExclude: nil,
-		FormatTimestamp: func(i interface{}) string {
-			return time.Now().Format(cus_common.TIME_FORMAT)
-		},
-		FormatLevel: func(i interface{}) string {
-			return strings.ToUpper(fmt.Sprintf("| %-6s", i))
-		},
-		FormatCaller: nil,
-		FormatMessage: func(i interface{}) string {
-			return fmt.Sprintf("| %s ", i)
-		},
-		FormatFieldName: func(i interface{}) string {
-			return fmt.Sprintf("| %s: ", i)
-		},
-		FormatFieldValue: func(i interface{}) string {
-			return strings.ToUpper(fmt.Sprintf("| %s ", i))
-		},
-		FormatErrFieldName:  nil,
-		FormatErrFieldValue: nil,
-	}
-	consoleLogger := zerolog.New(console).With().Timestamp().Stack().CallerWithSkipFrameCount(2).Logger()
+	consoleLogger := zerolog.New(zerolog.ConsoleWriter{Out: os.Stdout}).With().Timestamp().Logger()
 	log.consoleLogger = consoleLogger
 }
