@@ -30,8 +30,8 @@ func init() {
 }
 
 func LogInfo(traceId, msg string) {
-	log.consoleLogger.Info().Msg(fmt.Sprintf("%s | %s", traceId, msg))
-	log.fileLogger.Info().Msg(fmt.Sprintf("%s | %s", traceId, msg))
+	log.consoleLogger.Info().CallerSkipFrame(1).Msg(fmt.Sprintf("%s | %s", traceId, msg))
+	log.fileLogger.Info().CallerSkipFrame(1).Msg(fmt.Sprintf("%s | %s", traceId, msg))
 }
 
 func LogError(traceId string, err error) {
