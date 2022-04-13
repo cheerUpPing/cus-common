@@ -1,6 +1,7 @@
 package gin
 
 import (
+	"fmt"
 	cus_common "github.com/cheerUpPing/cus-common"
 	"github.com/cheerUpPing/cus-common/log"
 	"github.com/gin-gonic/gin"
@@ -19,7 +20,7 @@ func requestTime(ctx *gin.Context) {
 	begin := time.Now()
 	ctx.Next()
 	delta := time.Since(begin)
-	log.LogInfo(ctx.GetString(cus_common.TRACE_ID), delta.String())
+	log.LogInfo(ctx.GetString(cus_common.TRACE_ID), fmt.Sprintf("cost: %s", delta.String()))
 }
 
 func handleException(ctx *gin.Context) {
