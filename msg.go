@@ -1,4 +1,4 @@
-package cus_common
+package c_common
 
 type Msg struct {
 	Code string

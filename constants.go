@@ -1,4 +1,4 @@
-package cus_common
+package c_common
 
 const LOG_PATH = "LOG_PATH"
 const LOG_FILE_NAME_PREFIX = "zerolog"
